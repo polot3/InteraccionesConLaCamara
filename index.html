@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Manos - Interacción con Cámara</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖐️ Detección de Manos en Tiempo Real</h1>
+            <p class="subtitle">Interacción con tu cámara web usando MediaPipe</p>
+        </header>
+
+        <main>
+            <div class="camera-section">
+                <div class="camera-wrapper">
+                    <video id="video" playsinline></video>
+                    <canvas id="canvas"></canvas>
+                    <div class="overlay-info">
+                        <div class="fps-counter" id="fps">FPS: 0</div>
+                        <div class="detection-status" id="status">Inicializando...</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">Iniciar Cámara</button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>Detener Cámara</button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h2>📊 Información en Tiempo Real</h2>
+                
+                <div class="info-group">
+                    <h3>Estado General</h3>
+                    <p><strong>Estado:</strong> <span id="generalStatus">Esperando inicio</span></p>
+                    <p><strong>Manos detectadas:</strong> <span id="handCount">0</span></p>
+                    <p><strong>Confianza promedio:</strong> <span id="confidence">--%</span></p>
+                </div>
+
+                <div class="info-group">
+                    <h3>Mano Izquierda</h3>
+                    <p><strong>Estado:</strong> <span id="leftHandStatus">No detectada</span></p>
+                    <p><strong>Confianza:</strong> <span id="leftConfidence">--%</span></p>
+                    <div class="landmarks" id="leftLandmarks">
+                        <p class="text-muted">Levanta tu mano izquierda</p>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h3>Mano Derecha</h3>
+                    <p><strong>Estado:</strong> <span id="rightHandStatus">No detectada</span></p>
+                    <p><strong>Confianza:</strong> <span id="rightConfidence">--%</span></p>
+                    <div class="landmarks" id="rightLandmarks">
+                        <p class="text-muted">Levanta tu mano derecha</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by <strong>MediaPipe Hands</strong> • Desarrollado con JavaScript vanilla</p>
+            <p>
+                <a href="Spec.md" target="_blank">📖 Ver Especificaciones</a> | 
+                <a href="README.md" target="_blank">📚 Documentación</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- MediaPipe Scripts -->
+    <script async src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/handDetector.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
